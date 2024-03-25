@@ -35,7 +35,7 @@ export function CardBill() {
                 </CardFooter>
             </Card> */}
 
-            <div className="w-64 p-4 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col gap-8">
+            <div className="w-full p-4 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col gap-8">
                 <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
                         <Droplet size={36} />
