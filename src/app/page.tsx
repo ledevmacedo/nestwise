@@ -26,7 +26,8 @@ export default function Home() {
       <HouseUsers userName={"John"} userId="none" />
 
       <ActivityHistory category={"gas"} activity={"overdue"} user={"Leandro"} value={"30,00"} paymentDate={new Date()} />
-      <Navbar />
+      <Navbar isHome isNote={false} isProfile={false}
+      />
     </div>
   );
 }
