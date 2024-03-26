@@ -1,15 +1,18 @@
-import { ScrollAreaHorizontalDemo } from "@/components/ScrollAreaHorizontalDemo";
+"use client"
 import { CardBill } from "@/components/cards/cardBill";
-import { Button } from "@/components/ui/button";
+import { HouseUsers } from "@/components/houseUsers";
 import { UserBalance } from "@/components/user/userBalance";
 import { UserHeader } from "@/components/user/userHeader";
-import Image from "next/image";
+
+
+
+
 
 
 
 export default function Home() {
   return (
-    <div className="container mx-auto pt-8">
+    <div className="px-4 pt-6 flex flex-col gap-4">
       <UserHeader userName={"John"} userId="none" />
       <UserBalance userBalance="€ 13,553.00" />
       <CardBill
@@ -21,7 +24,7 @@ export default function Home() {
         paymentStatus={"partPaid"}
         singlePaymentStatus={"overdue"}
       />
-
+      <HouseUsers userName={"John"} userId="none" />
     </div>
   );
 }
