@@ -1,64 +1,131 @@
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+"use client"
 import { Button } from "../ui/button"
-import { Droplet } from 'lucide-react';
-import { People, User } from "iconsax-react";
+import { People, User, Drop, Flash, Wifi, ExportSquare, ChemicalGlass, House } from "iconsax-react";
 import { StatusButton } from "../statusButton";
+import { Badge } from "../ui/badge";
+import { BadgeCustom } from "../ui/badgeCustom";
+import { Separator } from "../ui/separator";
+import { useState } from "react";
+import Link from "next/link";
+import { format } from "date-fns"
+import { parse, getDay, getMonth, getYear } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+import enUS from 'date-fns/locale/en-US';
+import id from 'date-fns/locale/id';
+import zhCN from 'date-fns/locale/zh-CN'; // Importa o locale para Chinês (Simplificado)
 
-export function CardBill() {
+interface statusContent {
+    [key: string]: {
+        contentBadge: string
+    }
+}
+
+const statusContent: statusContent = {
+    pending: { contentBadge: "Pending" },
+    overdue: { contentBadge: "Overdue" },
+    paid: { contentBadge: "Paid" },
+    partPaid: { contentBadge: "Part Paid" },
+}
+
+
+interface billCardProps {
+    category: string;
+    company: string;
+    maturityDate: Date; //on future, update to date
+    value: string;
+    singleValue: string;
+    paymentStatus: any;
+    singlePaymentStatus: any;
+}
+
+interface IconMapping {
+    [key: string]: {
+        icon: any; // Tipo genérico para o componente de ícone
+        size: string;
+        color: string;
+    };
+}
+const iconMapping: IconMapping = {
+    water: {
+        icon: Drop,
+        size: "36",
+        color: "text-blue-500"
+    },
+    energy: {
+        icon: Flash,
+        size: "36",
+        color: "text-yellow-500"
+    },
+    internet: {
+        icon: Wifi,
+        size: "36",
+        color: "text-purple-500"
+    },
+    rent: {
+        icon: House,
+        size: "36",
+        color: "text-green-500"
+    },
+    gas: {
+        icon: ChemicalGlass,
+        size: "36",
+        color: "text-violet-500"
+    }
+};
+
+
+export function CardBill({ category, company, maturityDate, value, singleValue, paymentStatus, singlePaymentStatus }: billCardProps) {
+    const formattedDate = maturityDate ? format(maturityDate, 'dd MMM yyyy') : ". . ."
+    const { icon: Icon, size, color } = iconMapping[category] || {};
+    const { contentBadge: ContentBadge } = statusContent[paymentStatus] || {};
+    const { contentBadge: ContentSingleBadge } = statusContent[singlePaymentStatus] || {};
     return (
         <>
-            {/* Alternative Option  */}
-            {/* <Card className="w-56">
-                <CardHeader >
-                    <div className="flex gap-2 justify-between items-start">
-                        <Droplet size={36} />
-                        <h1 className="text-base opacity-95">Agua</h1>
-                    </div>
-                </CardHeader>
-                <CardContent className="flex flex-col gap-2">
-                    <div>
-                        <h1 className="text-xl font-semibold">€ 40,50 Total</h1>
-                        <p className="text-base opacity-80">€ 20,25 Person</p>
-                    </div>
-
-
-                </CardContent>
-                <CardFooter className="flex  gap-2">
-                    <Button className="w-full">Confirmar Pagamento</Button>
-                </CardFooter>
-            </Card> */}
-
-            <div className="w-full p-4 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col gap-8">
-                <div className="flex items-center justify-between gap-2">
+            <div className="w-full p-4 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col gap-4">
+                <div className="flex justify-between">
                     <div className="flex items-center gap-2">
-                        <Droplet size={36} />
-                        <h1 className="text-2xl font-semibold">Agua</h1>
+                        {Icon &&
+                            <div className="p-2 rounded-lg bg-accent-foreground">
+                                <Icon size={size} className={color} variant="Bulk" />
+                            </div>
+                        }
+                        <div>
+                            <p className="text-xs font-normal capitalize">
+                                {category}
+                            </p>
+                            <p className="text-xs font-normal opacity-60 capitalize">{company}</p>
+                        </div>
                     </div>
-                    Status
+                    <div className="cursor-pointer">
+                        <Link href={`/billDetails/${"id"}`}>
+                            <ExportSquare size={16} className="opacity-60" />
+                        </Link>
+                    </div>
                 </div>
-
-                <div className="flex gap-2 flex-col">
-                    <div className="flex gap-2 items-center">
-                        <People size="20" className="text-primary" variant="Bulk" />
-                        <h1 className=" scroll-m-20 text-xl font-semibold tracking-tight">
-                            € 40,00
+                <div className="flex flex-col gap-2">
+                    <p className="text-xs font-normal opacity-60">Valor total</p>
+                    <div className="flex gap-4 justify-start items-center">
+                        <h1 className="text-3xl font-semibold">
+                            {value}
                         </h1>
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <User size="18" className="text-primary" variant="Bulk" />
-                        <p className="leading-7 opacity-90">
-                            € 20,00
-                        </p>
+                        <BadgeCustom variant={paymentStatus}>
+                            {ContentBadge}
+                        </BadgeCustom>
                     </div>
                 </div>
-                <StatusButton status="overdue" />
+                <div className="flex flex-col gap-2">
+                    <p className="text-xs font-normal opacity-60">Sua parte</p>
+                    <div className="flex gap-4 justify-start items-center">
+                        <h1 className="text-xl font-semibold">{singleValue} </h1>
+                        <BadgeCustom variant={singlePaymentStatus}>{ContentSingleBadge}</BadgeCustom>
+                    </div>
+                </div>
+                <Separator className="bg-accent-foreground h-0.5" />
+                <div className="flex w-full flex-col gap-2">
+                    <p className="text-xs font-normal opacity-60">Pagamento até <strong>{formattedDate}</strong></p>
+                    <Button>Pagar</Button>
+
+                </div>
             </div>
         </>
     )
