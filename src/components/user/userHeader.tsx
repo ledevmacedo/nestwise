@@ -22,7 +22,7 @@ export function UserHeader({ userName, userId }: UserHeaderProps) { // Remove ty
                 </h1>
                 <Link href={`/profile/${userId}`}>
                     <Avatar className="w-8 h-8 ">
-                        <AvatarImage src="https://github.com/brazilianBug"
+                        <AvatarImage src="https://github.com/ledevmacedo.png"
                             alt={userName} />
                         <AvatarFallback className="bg-accent ">
                             <User
