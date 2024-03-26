@@ -1,14 +1,9 @@
 "use client"
+import { ActivityHistory } from "@/components/activityHistory";
 import { CardBill } from "@/components/cards/cardBill";
 import { HouseUsers } from "@/components/houseUsers";
 import { UserBalance } from "@/components/user/userBalance";
 import { UserHeader } from "@/components/user/userHeader";
-
-
-
-
-
-
 
 export default function Home() {
   return (
@@ -25,6 +20,7 @@ export default function Home() {
         singlePaymentStatus={"overdue"}
       />
       <HouseUsers userName={"John"} userId="none" />
+      <ActivityHistory category={"gas"} activity={"overdue"} user={"Leandro"} value={"30,00"} paymentDate={new Date()} />
     </div>
   );
 }

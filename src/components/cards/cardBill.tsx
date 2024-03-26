@@ -76,8 +76,8 @@ const iconMapping: IconMapping = {
 
 export function CardBill({ category, company, maturityDate, value, singleValue, paymentStatus, singlePaymentStatus }: billCardProps) {
     const formattedDate = maturityDate ? format(maturityDate, 'dd MMM yyyy') : ". . ."
-    const { icon: Icon, size, color } = iconMapping[category] || {};
     const { contentBadge: ContentBadge } = statusContent[paymentStatus] || {};
+    const { icon: Icon, size, color } = iconMapping[category] || {};
     const { contentBadge: ContentSingleBadge } = statusContent[singlePaymentStatus] || {};
     return (
         <>

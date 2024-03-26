@@ -14,7 +14,7 @@ export function HouseUsers({ userName, userId, }: UserHeaderProps) {
     const surplusUsers = `+${userTotal.length - usersDisplay.length + 1}`
     return (
         <div className="flex flex-col gap-2">
-            <p className="text-sm font-semibold">Residents</p>
+            <p className="text-sm font-semibold text-card">Residents</p>
 
             {userTotal.length > 6 ?
                 <div className={`flex justify-between flex-wrap`}>
