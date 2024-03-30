@@ -1,4 +1,4 @@
-"use client"
+
 import { ActivityHistory } from "@/components/activityHistory";
 import { CardBill } from "@/components/cards/cardBill";
 import { HouseUsers } from "@/components/houseUsers";

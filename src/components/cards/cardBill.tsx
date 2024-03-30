@@ -18,6 +18,7 @@ import zhCN from 'date-fns/locale/zh-CN'; // Importa o locale para Chinês (Simp
 import {
     Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious,
 } from "@/components/ui/carousel"
+import { ItemIconTitle } from "../itemIconTitle";
 interface statusContent {
     [key: string]: {
         contentBadge: string
@@ -82,8 +83,8 @@ export function CardBill({ category, company, maturityDate, value, singleValue, 
     const fakeMap = [1, 2, 3]
     const formattedDate = maturityDate ? format(maturityDate, 'dd MMM yyyy') : ". . ."
     const { contentBadge: ContentBadge } = statusContent[paymentStatus] || {};
-    const { icon: Icon, size, color } = iconMapping[category] || {};
     const { contentBadge: ContentSingleBadge } = statusContent[singlePaymentStatus] || {};
+    const { icon: Icon, size, color } = iconMapping[category] || {};
     return (
         <div>
             <Carousel className="w-full max-w-xs">
@@ -93,21 +94,9 @@ export function CardBill({ category, company, maturityDate, value, singleValue, 
                             className={` md:basis-1/2 lg:basis-1/3 pl-4 ${fakeMap.length > 1 ? "basis-11/12" : ""}`}>
                             <div className="w-full p-4 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col gap-4">
                                 <div className="flex justify-between">
-                                    <div className="flex items-center gap-2">
-                                        {Icon &&
-                                            <div className="p-2 rounded-lg bg-accent-foreground">
-                                                <Icon size={size} className={color} variant="Bulk" />
-                                            </div>
-                                        }
-                                        <div>
-                                            <p className="text-xs font-normal capitalize">
-                                                {category}
-                                            </p>
-                                            <p className="text-xs font-normal opacity-60 capitalize">{company}</p>
-                                        </div>
-                                    </div>
+                                    <ItemIconTitle category={category} company={company} />
                                     <div className="cursor-pointer">
-                                        <Link href={`/billDetails/${"id"}`}>
+                                        <Link href={`dashboard/billDetails/`}>
                                             <ExportSquare size={16} className="opacity-60" />
                                         </Link>
                                     </div>

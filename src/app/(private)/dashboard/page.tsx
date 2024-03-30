@@ -1,11 +1,9 @@
-"use client"
 import { HouseUsers } from '@/components/houseUsers';
 import { ActivityHistory } from '@/components/activityHistory';
 import { Navbar } from '@/components/navbar';
 import { CardBill } from '@/components/cards/cardBill';
 import { UserHeader } from '@/components/user/userHeader';
 import { UserBalance } from '@/components/user/userBalance';
-
 
 export default function Dashboard() {
     return (
