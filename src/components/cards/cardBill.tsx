@@ -14,6 +14,10 @@ import enUS from 'date-fns/locale/en-US';
 import id from 'date-fns/locale/id';
 import zhCN from 'date-fns/locale/zh-CN'; // Importa o locale para Chinês (Simplificado)
 
+
+import {
+    Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious,
+} from "@/components/ui/carousel"
 interface statusContent {
     [key: string]: {
         contentBadge: string
@@ -75,58 +79,70 @@ const iconMapping: IconMapping = {
 
 
 export function CardBill({ category, company, maturityDate, value, singleValue, paymentStatus, singlePaymentStatus }: billCardProps) {
+    const fakeMap = [1, 2, 3]
     const formattedDate = maturityDate ? format(maturityDate, 'dd MMM yyyy') : ". . ."
     const { contentBadge: ContentBadge } = statusContent[paymentStatus] || {};
     const { icon: Icon, size, color } = iconMapping[category] || {};
     const { contentBadge: ContentSingleBadge } = statusContent[singlePaymentStatus] || {};
     return (
         <>
-            <div className="w-full p-4 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col gap-4">
-                <div className="flex justify-between">
-                    <div className="flex items-center gap-2">
-                        {Icon &&
-                            <div className="p-2 rounded-lg bg-accent-foreground">
-                                <Icon size={size} className={color} variant="Bulk" />
-                            </div>
-                        }
-                        <div>
-                            <p className="text-xs font-normal capitalize">
-                                {category}
-                            </p>
-                            <p className="text-xs font-normal opacity-60 capitalize">{company}</p>
-                        </div>
-                    </div>
-                    <div className="cursor-pointer">
-                        <Link href={`/billDetails/${"id"}`}>
-                            <ExportSquare size={16} className="opacity-60" />
-                        </Link>
-                    </div>
-                </div>
-                <div className="flex flex-col gap-2">
-                    <p className="text-xs font-normal opacity-60">Valor total</p>
-                    <div className="flex gap-4 justify-start items-center">
-                        <h1 className="text-3xl font-semibold">
-                            {value}
-                        </h1>
-                        <BadgeCustom variant={paymentStatus}>
-                            {ContentBadge}
-                        </BadgeCustom>
-                    </div>
-                </div>
-                <div className="flex flex-col gap-2">
-                    <p className="text-xs font-normal opacity-60">Sua parte</p>
-                    <div className="flex gap-4 justify-start items-center">
-                        <h1 className="text-xl font-semibold">{singleValue} </h1>
-                        <BadgeCustom variant={singlePaymentStatus}>{ContentSingleBadge}</BadgeCustom>
-                    </div>
-                </div>
-                <Separator className="bg-accent-foreground h-0.5" />
-                <div className="flex w-full flex-col gap-2">
-                    <p className="text-xs font-normal opacity-60">Pagamento até <strong>{formattedDate}</strong></p>
-                    <Button>Pagar</Button>
+            <Carousel>
+                <CarouselContent className="">
+                    {fakeMap.map((item, index) => (
+                        <CarouselItem key={index}
+                            className={` md:basis-1/2 lg:basis-1/3 pl-4 ${fakeMap.length > 1 ? "basis-11/12" : ""}`}>
+                            <div className="w-full p-4 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col gap-4">
+                                <div className="flex justify-between">
+                                    <div className="flex items-center gap-2">
+                                        {Icon &&
+                                            <div className="p-2 rounded-lg bg-accent-foreground">
+                                                <Icon size={size} className={color} variant="Bulk" />
+                                            </div>
+                                        }
+                                        <div>
+                                            <p className="text-xs font-normal capitalize">
+                                                {category}
+                                            </p>
+                                            <p className="text-xs font-normal opacity-60 capitalize">{company}</p>
+                                        </div>
+                                    </div>
+                                    <div className="cursor-pointer">
+                                        <Link href={`/billDetails/${"id"}`}>
+                                            <ExportSquare size={16} className="opacity-60" />
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <p className="text-xs font-normal opacity-60">Valor total</p>
+                                    <div className="flex gap-4 justify-start items-center">
+                                        <h1 className="text-3xl font-semibold">
+                                            {value}
+                                        </h1>
+                                        <BadgeCustom variant={paymentStatus}>
+                                            {ContentBadge}
+                                        </BadgeCustom>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <p className="text-xs font-normal opacity-60">Sua parte</p>
+                                    <div className="flex gap-4 justify-start items-center">
+                                        <h1 className="text-xl font-semibold">{singleValue} </h1>
+                                        <BadgeCustom variant={singlePaymentStatus}>{ContentSingleBadge}</BadgeCustom>
+                                    </div>
+                                </div>
+                                <Separator className="bg-accent-foreground h-0.5" />
+                                <div className="flex w-full flex-col gap-2">
+                                    <p className="text-xs font-normal opacity-60">Pagamento até <strong>{formattedDate}</strong></p>
+                                    <Button>Pagar</Button>
 
-                </div>
-            </div>
+                                </div>
+                            </div>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+            </Carousel>
         </>
     )
 }

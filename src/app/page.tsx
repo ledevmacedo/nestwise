@@ -14,13 +14,15 @@ export default function Home() {
       <UserBalance userBalance="€ 13,553.00" />
       <CardBill
         category={"gas"}
-        company={"Aguas Famalicão"}
+        company={"Galp"}
         maturityDate={new Date()}
         value={"€24,60"}
         singleValue={"€14,30"}
         paymentStatus={"partPaid"}
         singlePaymentStatus={"overdue"}
       />
+
+
       <HouseUsers userName={"John"} userId="none" />
 
       <ActivityHistory category={"gas"} activity={"overdue"} user={"Leandro"} value={"30,00"} paymentDate={new Date()} />
