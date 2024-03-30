@@ -23,8 +23,8 @@ export function ActivityHistory({ category, value, activity, paymentDate, user }
                 {listDisplay.map((item, index) => (
                     <ActivityList key={index} category={"gas"} activity={"overdue"} user={"Leandro"} value={"30,00"} paymentDate={new Date()} />
                 ))}
-                <Button variant={"outline"} className="mt-4">
-                    See full history
+                <Button variant={"ghost"} className="mt-4">
+                    See all history
                     <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
             </> :

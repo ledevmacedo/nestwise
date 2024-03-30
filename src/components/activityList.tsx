@@ -17,34 +17,28 @@ interface ActivityHistoryProps {
 interface IconMapping {
     [key: string]: {
         icon: any; // Tipo genérico para o componente de ícone
-        size: string;
         color: string;
     };
 }
 const iconMapping: IconMapping = {
     water: {
         icon: Drop,
-        size: "36",
         color: "text-blue-500"
     },
     energy: {
         icon: Flash,
-        size: "36",
         color: "text-yellow-500"
     },
     internet: {
         icon: Wifi,
-        size: "36",
         color: "text-purple-500"
     },
     rent: {
         icon: House,
-        size: "36",
         color: "text-green-500"
     },
     gas: {
         icon: ChemicalGlass,
-        size: "24",
         color: "text-violet-500"
     }
 };
@@ -64,7 +58,7 @@ const statusContent: statusContent = {
 export function ActivityList({ category, value, activity, paymentDate, user }: ActivityHistoryProps) {
     const formattedDate = paymentDate ? format(paymentDate, 'dd MMM yyyy') : ". . ."
     const { activityContent: ContentActivity } = statusContent[activity] || {};
-    const { icon: Icon, size, color } = iconMapping[category] || {};
+    const { icon: Icon, color } = iconMapping[category] || {};
 
     return (
         <div className="flex flex-col gap-4">
@@ -73,7 +67,7 @@ export function ActivityList({ category, value, activity, paymentDate, user }: A
                 <div className="flex gap-4">
                     {Icon &&
                         <div className="p-2 rounded-md bg-accent-foreground">
-                            <Icon size={size} className={color} variant="Bulk" />
+                            <Icon className={`${color} size-6`} variant="Bulk" />
                         </div>
                     }
                     <div className="flex flex-col justify-between">

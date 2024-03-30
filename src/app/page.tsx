@@ -6,8 +6,6 @@ import { Navbar } from "@/components/navbar";
 import { UserBalance } from "@/components/user/userBalance";
 import { UserHeader } from "@/components/user/userHeader";
 
-
-
 export default function Home() {
 
   return (
