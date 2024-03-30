@@ -85,8 +85,8 @@ export function CardBill({ category, company, maturityDate, value, singleValue, 
     const { icon: Icon, size, color } = iconMapping[category] || {};
     const { contentBadge: ContentSingleBadge } = statusContent[singlePaymentStatus] || {};
     return (
-        <>
-            <Carousel>
+        <div>
+            <Carousel className="w-full max-w-xs">
                 <CarouselContent className="">
                     {fakeMap.map((item, index) => (
                         <CarouselItem key={index}
@@ -140,9 +140,7 @@ export function CardBill({ category, company, maturityDate, value, singleValue, 
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
             </Carousel>
-        </>
+        </div>
     )
 }
