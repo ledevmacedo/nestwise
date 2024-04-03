@@ -1,4 +1,5 @@
 import { HeadBack } from "@/components/headBack";
+import { PreviewPDF } from "@/components/previewPDF";
 import { BadgeCustom } from "@/components/ui/badgeCustom";
 
 export default function BillDetails() {
@@ -15,6 +16,11 @@ export default function BillDetails() {
                         <h1 className="text-2xl font-semibold">€24,60</h1>
                         <p className="text-sm">Paid</p>
                     </div>
+                </div>
+                <div>
+                    <h2 className="text-base font-medium">Ver Fatura</h2>
+                    <PreviewPDF></PreviewPDF>
+
                 </div>
             </div>
         </>
