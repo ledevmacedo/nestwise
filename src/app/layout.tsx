@@ -20,6 +20,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const houseCheck = false
   return (
     <html lang="en">
       <body

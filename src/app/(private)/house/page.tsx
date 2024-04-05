@@ -1,11 +1,8 @@
-
 import { Navbar } from "@/components/navbar";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 
-
-
-export default async function Notes() {
+export default async function House() {
     const { isAuthenticated } = getKindeServerSession();
 
     if (!(await isAuthenticated())) {
@@ -14,11 +11,8 @@ export default async function Notes() {
     return (
         <>
             <div className="w-full">
-                <h1 className="text-4xl mb-10">Notes</h1>
+                <h1 className="text-4xl">House</h1>
             </div>
-
-
-            <Navbar isHome={false} isNote isProfile={false} />
         </>
     )
 }

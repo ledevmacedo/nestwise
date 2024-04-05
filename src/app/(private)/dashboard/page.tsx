@@ -8,6 +8,7 @@ import { Navbar } from '@/components/navbar';
 import { CardBill } from '@/components/cards/cardBill';
 import { UserHeader } from '@/components/user/userHeader';
 import { UserBalance } from '@/components/user/userBalance';
+import { Button } from "@/components/ui/button";
 
 export default async function Dashboard() {
     const { isAuthenticated, getUser } = getKindeServerSession();
@@ -15,7 +16,7 @@ export default async function Dashboard() {
     if (!(await isAuthenticated())) {
         redirect("/api/auth/login");
     }
-
+    const houseInfo = false
     // if (isLoading) return <div>Loading...</div>;
     return (
         <div className="px-4 pt-6 pb-16 flex flex-col gap-4">
@@ -32,7 +33,7 @@ export default async function Dashboard() {
             />
             <HouseUsers userName={"John"} userId="none" />
 
-            <ActivityHistory category={"gas"} activity={"overdue"} user={"Leandro"} value={"30,00"} paymentDate={new Date()} />
+            {/* <ActivityHistory category={"gas"} activity={"overdue"} user={"Leandro"} value={"30,00"} paymentDate={new Date()} /> */}
             <Navbar isHome isNote={false} isProfile={false} />
         </div>
     );
