@@ -9,10 +9,11 @@ import { User } from "iconsax-react";
 import Link from "next/link";
 
 interface UserHeaderProps {
-    userName: string;
-    userId: string;
+    userName: any;
+    userId: any;
+    picture: any;
 }
-export function UserHeader({ userName, userId }: UserHeaderProps) { // Remove type annotation
+export function UserHeader({ userName, userId, picture }: UserHeaderProps) { // Remove type annotation
     return (
         <div className="flex flex-col gap-3">
             <div className="w-full flex gap-3 items-center justify-between">
@@ -22,7 +23,7 @@ export function UserHeader({ userName, userId }: UserHeaderProps) { // Remove ty
                 </h1>
                 <Link href={`/profile/${userId}`}>
                     <Avatar className="w-8 h-8 ">
-                        <AvatarImage src="https://github.com/ledevmacedo.png"
+                        <AvatarImage src={picture}
                             alt={userName} />
                         <AvatarFallback className="bg-accent ">
                             <User
