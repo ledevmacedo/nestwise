@@ -28,6 +28,7 @@
     "iconsax-react": "^0.0.8",
     "input-otp": "^1.2.3",
     "lucide-react": "^0.363.0",
+    "mongodb": "^6.5.0",
     "next": "14.1.4",
     "react": "^18",
     "react-day-picker": "^8.10.0",
