@@ -2,9 +2,6 @@ import { Poppins as FontSans } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import { redirect } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { RegisterLink, LogoutLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
 
 const fontSans = FontSans({

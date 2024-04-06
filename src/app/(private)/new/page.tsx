@@ -1,7 +1,6 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 export default async function New() {
-    const { isAuthenticated } = getKindeServerSession();
+
     return (
 
         <div className="w-full h-dvh">
